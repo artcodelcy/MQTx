@@ -1,0 +1,35 @@
+spring:
+  rabbitmq:
+  ####连接地址
+    host: 192.168.91.6
+   ####端口号   
+    port: 5672
+   ####账号 
+    username: admin
+   ####密码  
+    password: admin
+   ### 地址
+    virtual-host: /admin_toov5
+    listener:
+      simple:
+        retry:
+        ####开启消费者（程序出现异常的情况下会）进行重试
+          enabled: true
+         ####最大重试次数
+          max-attempts: 5
+        ####重试间隔次数
+          initial-interval: 3000
+        ####开启手动ack  
+        acknowledge-mode: manual
+         
+  #数据库连接信息
+  datasource: 
+        name: test
+        url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE
+        username: root
+        password: root
+        # 使用druid数据源
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+server:
+  port: 8081
